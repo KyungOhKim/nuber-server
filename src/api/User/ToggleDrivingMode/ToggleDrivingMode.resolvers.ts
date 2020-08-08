@@ -7,7 +7,7 @@ const resolvers: Resolvers = {
     ToggleDrivingMode: privateResolver(async (_, __, { req }) => {
       const user: User = req.user;
       user.isDriving = !user.isDriving;
-      user.save();
+      await User.update({ id: user.id }, { isDriving: user.isDriving });
       return {
         ok: true,
         error: null,
