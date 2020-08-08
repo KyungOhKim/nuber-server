@@ -8,10 +8,7 @@ const resolvers: Resolvers = {
     GetMyPlaces: privateResolver(
       async (_, __, { req }): Promise<GetMyPlacesResponse> => {
         try {
-          const user: any = await User.findOne(
-            { id: req.user.id },
-            { relations: ["places"] }
-          );
+          const user: any = await User.findOne({ id: req.user.id });
           if (user) {
             return {
               ok: true,
